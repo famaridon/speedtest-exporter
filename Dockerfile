@@ -1,9 +1,3 @@
-FROM node:current-alpine AS builder
-COPY . .
-RUN yarn install && \
-    yarn build && \
-    yarn install --production --ignore-scripts --prefer-offline
-
 FROM debian:10-slim
 
 RUN apt-get update && \
@@ -13,6 +7,6 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y nodejs speedtest
 
-COPY --from=builder . .
+COPY . .
 
 ENTRYPOINT ["node", "dist/main.js"]
