@@ -1,8 +1,8 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "speedtest-exporter",
   "private": true,
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "Speedtest exporter for prometheus",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",

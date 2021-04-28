@@ -14,12 +14,12 @@ export class AppService {
 
   async run(): Promise<string> {
     return new Promise<string>((resolve, reject) => {
-      child.exec("speedtest --format=json", (error, stdout, stderr) => {
+      child.exec("speedtest --format=json --accept-license --accept-gdpr", (error, stdout, stderr) => {
         if (error) {
           console.log(error);
           return resolve(this.formatter.error());
         } else if (stderr) {
-          console.log(error);
+          console.log(stderr);
           return resolve(this.formatter.error());
         }
         console.log("result is : ");
