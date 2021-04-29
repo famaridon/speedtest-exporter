@@ -32,7 +32,8 @@ jobs:
 
       - run: yarn install
       - run: yarn build
-      - run: yarn install --production --ignore-scripts --prefer-offline    
+      - run: rm -rf node_modules
+      - run: yarn install --production   
 
 
       - name: Login to Docker Hub
