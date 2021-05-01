@@ -1,4 +1,11 @@
-FROM debian:10-slim
+FROM node:current-alpine AS builder
+COPY . .
+RUN yarn install && \
+    yarn build && \
+    rm -rf node_modules && \
+    yarn install --production
+
+FROM debian:stable-slim
 
 RUN apt-get update && \
     apt-get install -y curl && \
@@ -6,9 +13,8 @@ RUN apt-get update && \
     curl -s https://install.speedtest.net/app/cli/install.deb.sh | bash - && \
     apt-get update && \
     apt-get install -y nodejs speedtest && \
-    apt-get remove -y curl && \
     rm -rf /var/lib/apt/lists/*
 
-COPY . .
+COPY --from=builder . .
 
-ENTRYPOINT ["node", "dist/main.js"]
+ENTRYPOINT ["node", "run", "start:prod"] 
