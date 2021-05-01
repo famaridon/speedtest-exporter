@@ -37,4 +37,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker images
-        run: .github/build.sh ${{ steps.package-version.outputs.current-version}}
+        run: bash .github/build.sh
