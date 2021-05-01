@@ -17,4 +17,4 @@ RUN apt-get update && \
 
 COPY --from=builder . .
 
-ENTRYPOINT ["node", "run", "start:prod"] 
+ENTRYPOINT ["npm", "run", "start:prod"] 
